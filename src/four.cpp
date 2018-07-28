@@ -3,21 +3,38 @@
 
 #include "common.hpp"
 
-using namespace std;
+using std::string;
 
-
-int main() {
-	string input = "iwrupvqb";
-
-	char toHash[] = "happy";
-
+const string md5hash(const string toHash) {
 	unsigned char result[MD5_DIGEST_LENGTH];
 
-	MD5(&toHash, strlen(toHash), (unsigned char*)&result);
+	MD5((const unsigned char*) toHash.c_str(), toHash.length(), (unsigned char*)&result);
 
-	cout << "four" << endl;
+	char mdString[33];
 
-	cout << result << endl;
+	for (int i = 0; i < 16; i++) {
+		sprintf(&mdString[i*2], "%02x", (unsigned int)result[i]);
+	}
+
+	return mdString;
+}
+
+int main() {
+	const int zeroLength = 6;
+	const string zeros = string(zeroLength, '0');
+	const string input = "iwrupvqb";
+	string digest, toHash; 
+
+	for (int i = 0; ; i++) {
+		toHash = input + to_string(i);
+
+		digest = md5hash(toHash);
+
+		if (digest.substr(0, zeroLength) == zeros) {
+			cout << toHash << " = " << digest << endl;
+			break;
+		}
+	}
 
 	return 0;
 }

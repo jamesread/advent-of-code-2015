@@ -9,8 +9,8 @@ include_directories(${CMAKE_SOURCE_DIR}/src/)
 add_executable(one src/one.cpp src/common.hpp)
 add_executable(two src/two.cpp src/common.hpp)
 add_executable(three src/three.cpp src/common.hpp)
-#add_executable(four src/four.cpp src/common.hpp)
-#target_link_libraries(four openssl)
+add_executable(four src/four.cpp src/common.hpp)
+target_link_libraries(four ssl crypto)
 
 add_executable(twentyFive src/twentyFive.cpp src/common.hpp)
 
