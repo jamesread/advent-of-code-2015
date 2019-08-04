@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 
+#include "five.hpp"
+
 #include <string>
 
 using std::string;

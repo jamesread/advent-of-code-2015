@@ -3,6 +3,7 @@
 #include <iostream>
 
 using std::cout;
+using std::getline;
 using std::endl;
 
 bool checkBadLetterSequence(const char lastLetter, const char currentLetter) {
@@ -35,31 +36,22 @@ bool isNiceString(const int countVowels, const bool hasRepeatingLetters, const b
 	return true;
 }
 
-uint32_t countNiceStrings(const string instructions) {
-	uint32_t countNiceStrings = 0;
-
+bool isNiceString(const string test) {
 	uint32_t countVowels = 0;
 	char lastLetter = ' ';
 	bool hasRepeatingLetters = false;
 	bool hasBadLetterSequence = false;
 
-	for (const char currentLetter : instructions) {
+	for (const char currentLetter : test) {
 		if (currentLetter == lastLetter) {
 			hasRepeatingLetters = true;
 		}
 
-		hasBadLetterSequence = checkBadLetterSequence(lastLetter, currentLetter);
+		if (checkBadLetterSequence(lastLetter, currentLetter)) {
+			hasBadLetterSequence = true;
+		}
 
 		switch (currentLetter) {
-			case '\n':
-				if (isNiceString(countVowels, hasRepeatingLetters, hasBadLetterSequence)) {
-					countNiceStrings++;
-				}
-
-				countVowels = 0;
-				hasRepeatingLetters = false;
-				hasBadLetterSequence = false;
-				break;
 			case 'a':
 			case 'e':
 			case 'i':
@@ -67,15 +59,30 @@ uint32_t countNiceStrings(const string instructions) {
 			case 'u':
 				countVowels++;
 		}
+
+		lastLetter = currentLetter;
+	}
+
+	return isNiceString(countVowels, hasRepeatingLetters, hasBadLetterSequence);
+}
+
+uint32_t countNiceStrings(const string instructions) {
+	uint32_t countNiceStrings = 0;
+
+	auto instructionStream = istringstream(instructions); 
+	string line = "";
+
+	while (getline(instructionStream, line)) {
+		if (isNiceString(line)) {
+			countNiceStrings++;
+		}
 	}
 
 	return countNiceStrings;
 }
 
-int main() {
+void main_five() {
 	const string instructions = readInput("five.txt");
 
 	cout << "Nice strings: " << countNiceStrings(instructions) << endl;
-
-	return 0;
 }

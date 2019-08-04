@@ -30,3 +30,4 @@ smatch matchLine(string expression, string subject) {
 
 	return match;
 }
+
