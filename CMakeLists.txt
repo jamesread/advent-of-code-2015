@@ -12,6 +12,10 @@ add_executable(three src/three.cpp src/common.hpp)
 add_executable(four src/four.cpp src/common.hpp)
 target_link_libraries(four ssl crypto)
 
+add_executable(five_test tst/five.cpp src/five.hpp)
+add_executable(five src/five.cpp src/common.hpp)
+target_link_libraries(five gtest)
+
 add_executable(twentyFive src/twentyFive.cpp src/common.hpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wshadow-compatible-local -Wextra -pedantic --std=c++14")
