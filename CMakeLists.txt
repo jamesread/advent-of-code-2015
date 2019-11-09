@@ -8,7 +8,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src/)
 
 add_executable(one src/one.cpp src/common.hpp)
 
-add_executable(two src/two.cpp src/common.hpp)
+#add_executable(two src/two.cpp src/common.hpp)
 
 add_executable(three src/three.cpp src/common.hpp)
 
@@ -21,5 +21,7 @@ add_executable(five_test tst/five.cpp src/five.cpp)
 target_link_libraries(five_test gtest)
 
 add_executable(twentyFive src/twentyFive.cpp src/common.hpp)
+
+add_executable(six_part1 src/six_part1.cpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wshadow-compatible-local -Wextra -pedantic --std=c++14")

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-string readInput(string name) {
+const string readInput(string name) {
 	ifstream in("input/" + name);
 	string content;
 
@@ -22,12 +22,16 @@ string readInput(string name) {
 	return content;
 }
 
-smatch matchLine(string expression, string subject) {
+stringstream readInputStream(string name) {
+	return stringstream(readInput(name));
+}
+
+smatch* matchLine(string expression, string subject) {
 	regex re(expression);
-	smatch match;
+	static smatch match;
 
 	regex_search(subject, match, re);
 
-	return match;
+	return &match;
 }
 
