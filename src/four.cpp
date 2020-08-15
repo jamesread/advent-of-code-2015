@@ -4,6 +4,9 @@
 #include "common.hpp"
 
 using std::string;
+using std::cout;
+using std::endl;
+using std::to_string;
 
 const string md5hash(const string toHash) {
 	unsigned char result[MD5_DIGEST_LENGTH];

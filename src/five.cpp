@@ -5,6 +5,7 @@
 using std::cout;
 using std::getline;
 using std::endl;
+using std::istringstream;
 
 bool checkBadLetterSequence(const char lastLetter, const char currentLetter) {
 	if (
